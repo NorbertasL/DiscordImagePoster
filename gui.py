@@ -18,8 +18,8 @@ def main_config_gui():
     main_frame.add(webhook_tab.frame, text='WebHook Manager')
 
     # Placeholder for + tab (future dynamic tabs)
-    plus_frame = ttk.Frame(main_frame)
-    main_frame.add(plus_frame, text='+')
+    event_tab = EventsTab(main_frame)
+    main_frame.add(event_tab.frame, text='Events')
 
     root.mainloop()
 
@@ -70,3 +70,29 @@ class WebhookManagerTab:
         self.webhook_listbox.delete(0, 'end')
         for _id, title, url, desc in get_webhooks():
             self.webhook_listbox.insert('end', f"{title} - {url} - {desc}")
+
+class EventsTab:
+    """
+    Tab for managing events.
+
+    The EventsTab will be responsible for displaying existing events, allowing
+    the user to add new events, and allowing the user to remove events.
+    """
+    def __init__(self, parent):
+        self.frame = ttk.Frame(parent)
+        self.notebook = ttk.Notebook(self.frame)
+        self.notebook.pack(expand=True, fill='both')
+
+        self._add_placeholder_tab()
+        self.notebook.bind("<<NotebookTabChanged>>", self._on_tab_changed)
+
+    def _add_placeholder_tab(self):
+        self.plus_tab = ttk.Frame(self.notebook)
+        self.notebook.add(self.plus_tab, text='+')
+
+    def _on_tab_changed(self, event):
+        selected_index = self.notebook.index(self.notebook.select())
+        selected_tab_text = self.notebook.tab(selected_index, "text")
+        if selected_tab_text == '+':
+            # In the future this will create a new event tab
+            pass
