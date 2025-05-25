@@ -1,4 +1,12 @@
 # A virtual environment for Python, used to isolate dependencies.
 venv/ 
 
+# Ignore the *.db since its used for custom user configs
+*.db
+
+# Ignore Python cache directories
+__pycache__/
+
+
+
 
