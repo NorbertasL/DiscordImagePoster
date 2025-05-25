@@ -1,0 +1,4 @@
+# A virtual environment for Python, used to isolate dependencies.
+venv/ 
+
+
