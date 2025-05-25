@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 from db import init_db, get_webhooks, add_webhook
+from loaders import Config
 
 def main_config_gui():
     """
@@ -11,6 +12,7 @@ def main_config_gui():
     init_db()
 
     root = tk.Tk()
+    root.title(f"{Config().get('App', 'name')} v{Config().get('App', 'version')}")
     main_frame = ttk.Notebook(root)
     main_frame.pack(expand=True, fill='both')
 
