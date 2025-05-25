@@ -14,16 +14,16 @@ def main_config_gui():
     main_frame = ttk.Notebook(root)
     main_frame.pack(expand=True, fill='both')
 
-    webhook_tab = WebhookManagerTab(main_frame)
+    webhook_tab = WebhookTab(main_frame)
     main_frame.add(webhook_tab.frame, text='WebHook Manager')
 
     # Placeholder for + tab (future dynamic tabs)
     event_tab = EventsTab(main_frame)
-    main_frame.add(event_tab.frame, text='Events')
+    main_frame.add(event_tab.frame, text='Event Manager')
 
     root.mainloop()
 
-class WebhookManagerTab:
+class WebhookTab:
     """
     A tab in the main configuration window that allows users to create and
     manage webhooks.
